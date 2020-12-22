@@ -1,0 +1,16 @@
+DingTalk:
+  ServerIp: 0.0.0.0
+  ServerPort: 9001
+  SendUrl : https://oapi.dingtalk.com/robot/send
+  AccessToken : f06c463c2c4be4e2a3ce9bc7705cbcf3cabbf7a6e4b4587ccb4814fefd8c2f50
+  Secret : SEC6b2e548aa7dcd97a115046926c5409f7bb8b6f0b35091c391cd692cc8de8c787
+DB:
+  Mysql:
+    default:
+      DriverName: mysql
+      Connection: 39.97.164.243
+      Port: 3306
+      DbName: zhaopin
+      UserName: root
+      PassWord: 123456
+
