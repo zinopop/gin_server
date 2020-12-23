@@ -8,29 +8,27 @@ import (
 	"net/http"
 )
 
-
 type SendMsg struct {
-	Text     string `form:"text" json:"text" xml:"text"  binding:"required"`
+	Text string `form:"text" json:"text" xml:"text"  binding:"required"`
 }
 
-
-func DingSend(c *gin.Context)  {
+func DingSend(c *gin.Context) {
 	var SendMsg SendMsg
-	if err := c.ShouldBind(&SendMsg);err != nil{
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	if err := c.ShouldBind(&SendMsg); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "asdasdasd"})
 		return
 	}
-	msg,err := helper.SendDingMsg(string(helper.ContextPush(SendMsg.Text)))
-	if err != nil{
+	msg, err := helper.SendDingMsg(string(helper.ContextPush(SendMsg.Text)))
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	c.JSON(200, gin.H{
-		"data":"",
+		"data":    "",
 		"message": msg,
 	})
 }
 
-func DbText(c *gin.Context)  {
+func DbText(c *gin.Context) {
 	fmt.Println(model.GetById(1))
 }
