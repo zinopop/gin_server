@@ -23,7 +23,7 @@ ADD . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app main.go
 
 # 解决镜像太大的问题
-FROM alpine:latest
+FROM alpine:3.12.3
 # 安装 /bin/bash 方便调试
 RUN echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.4/main/" > /etc/apk/repositories
 RUN apk update \
