@@ -37,6 +37,8 @@ RUN apk update \
 RUN apk add --update ca-certificates
 RUN update-ca-certificates
 
+#安装curl
+
 # 统一亚洲时区
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
