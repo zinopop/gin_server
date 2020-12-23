@@ -15,7 +15,7 @@ type SendMsg struct {
 func DingSend(c *gin.Context) {
 	var SendMsg SendMsg
 	if err := c.ShouldBind(&SendMsg); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "asdasdasd"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	msg, err := helper.SendDingMsg(string(helper.ContextPush(SendMsg.Text)))
