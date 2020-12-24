@@ -25,12 +25,26 @@ type Cmd struct {
 }
 
 func Rebuild(c *gin.Context) {
-	command := "/home/admin/gin_server_v1/build.sh ."
-	cmd := CmdBash(command)
-	c.JSON(200, gin.H{
-		"data":    "",
-		"message": cmd,
-	})
+	command := "/home/admin/gin_server_v1/build.sh . "
+
+	cmd := exec.Command("bash", "-c",
+		command+" >> file.log") //重定向
+	err := cmd.Start()
+	if err != nil {
+		c.JSON(500, gin.H{
+			"data":    "",
+			"message": err,
+		})
+		return
+	}
+	err = cmd.Wait()
+	if err != nil {
+		c.JSON(500, gin.H{
+			"data":    "",
+			"message": err,
+		})
+		return
+	}
 }
 
 func CmdBash(commandName string) *exec.Cmd {
