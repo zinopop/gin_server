@@ -25,9 +25,13 @@ type Cmd struct {
 }
 
 func Rebuild(c *gin.Context) {
-	command := "/home/admin/gin_server_v1/build.sh"
-	CmdBash(command) //重定向
-
+	cmd := exec.Command("/bin/bash", "-c", "/home/admin/gin_server_v1/build.sh")
+	bytes, err := cmd.Output()
+	if err != nil {
+		fmt.Println(err)
+	}
+	resp := string(bytes)
+	fmt.Println(resp)
 }
 
 func CmdBash(commandName string) {
