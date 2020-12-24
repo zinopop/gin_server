@@ -9,4 +9,4 @@ cd /home/admin/gin_server_v1
 sudo git pull
 sudo docker build -t gin_server .
 
-sudo docker run -d -p 9001:9001 --name gin_server gin_server
+sudo docker run -d -p 9002:9002 --name gin_server gin_server

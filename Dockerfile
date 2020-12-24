@@ -53,6 +53,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app main.go
 
 
 # 暴露端口
-EXPOSE 9001
+EXPOSE 9002
 # 项目默认启动命令
 ENTRYPOINT ./\app
