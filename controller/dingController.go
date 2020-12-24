@@ -12,6 +12,7 @@ type SendMsg struct {
 	Text string `form:"text" json:"text" xml:"text"  binding:"required"`
 }
 
+//
 func DingSend(c *gin.Context) {
 	var SendMsg SendMsg
 	if err := c.ShouldBind(&SendMsg); err != nil {
