@@ -32,7 +32,8 @@ func Rebuild(c *gin.Context) {
 		log.Println(err)
 	}
 	resp := string(bytes)
-	log.Println(resp)
+	fmt.Println("测试----------------")
+	fmt.Println(resp)
 	//out := make(chan int)
 	//go f1(out)
 	//out <- 2
