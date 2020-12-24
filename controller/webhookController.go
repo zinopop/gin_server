@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
+	"log"
 	"os"
 	"os/exec"
 	"syscall"
@@ -25,10 +26,17 @@ type Cmd struct {
 }
 
 func Rebuild(c *gin.Context) {
-	out := make(chan int)
-	go f1(out)
-	out <- 2
-	fmt.Println("asdasdasd")
+	cmd := exec.Command("/bin/bash", "-c", "/home/admin/gin_server_v1/build.sh")
+	bytes, err := cmd.Output()
+	if err != nil {
+		log.Println(err)
+	}
+	resp := string(bytes)
+	log.Println(resp)
+	//out := make(chan int)
+	//go f1(out)
+	//out <- 2
+	//fmt.Println("asdasdasd")
 }
 
 func f1(in chan int) {
@@ -40,18 +48,4 @@ func f1(in chan int) {
 	resp := string(bytes)
 	fmt.Println(resp)
 	fmt.Println(<-in)
-}
-
-func CmdBash(commandName string) {
-	command := exec.Command(commandName) //初始化Cmd
-	err := command.Start()               //运行脚本
-	if nil != err {
-		fmt.Println(err)
-	}
-	fmt.Println("Process PID:", command.Process.Pid)
-	err = command.Wait() //等待执行完成
-	if nil != err {
-		fmt.Println(err)
-	}
-	fmt.Println("ProcessState PID:", command.ProcessState.Pid())
 }
