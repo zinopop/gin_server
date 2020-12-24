@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"bytes"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
 	"os"
@@ -25,37 +25,21 @@ type Cmd struct {
 }
 
 func Rebuild(c *gin.Context) {
-	command := "/home/admin/gin_server_v1/build.sh . "
+	command := "/home/admin/gin_server_v1/build.sh"
+	CmdBash(command) //重定向
 
-	cmd := exec.Command("bash", "-c",
-		command+" >> file.log") //重定向
-	err := cmd.Start()
-	if err != nil {
-		c.JSON(500, gin.H{
-			"data":    "",
-			"message": err,
-		})
-		return
-	}
-	err = cmd.Wait()
-	if err != nil {
-		c.JSON(500, gin.H{
-			"data":    "",
-			"message": err,
-		})
-		return
-	}
 }
 
-func CmdBash(commandName string) *exec.Cmd {
-	cmd := exec.Command("/bin/bash", "-c", commandName)
-
-	go func() {
-		var out bytes.Buffer
-		cmd.Stdout = &out
-		cmd.Stderr = os.Stderr
-		_ = cmd.Run()
-	}()
-
-	return cmd
+func CmdBash(commandName string) {
+	command := exec.Command(commandName) //初始化Cmd
+	err := command.Start()               //运行脚本
+	if nil != err {
+		fmt.Println(err)
+	}
+	fmt.Println("Process PID:", command.Process.Pid)
+	err = command.Wait() //等待执行完成
+	if nil != err {
+		fmt.Println(err)
+	}
+	fmt.Println("ProcessState PID:", command.ProcessState.Pid())
 }
