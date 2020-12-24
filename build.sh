@@ -1,4 +1,5 @@
 #!/bin/sh
+. /etc/profile
 sudo curl http://54.215.230.116:9001/sendMsg?text=开始构建服务...
 sudo docker stop gin_server
 sudo docker rm gin_server
