@@ -25,6 +25,13 @@ type Cmd struct {
 }
 
 func Rebuild(c *gin.Context) {
+	out := make(chan int)
+	go f1(out)
+	out <- 2
+	fmt.Println("asdasdasd")
+}
+
+func f1(in chan int) {
 	cmd := exec.Command("/bin/bash", "-c", "/home/admin/gin_server_v1/build.sh")
 	bytes, err := cmd.Output()
 	if err != nil {
@@ -32,6 +39,7 @@ func Rebuild(c *gin.Context) {
 	}
 	resp := string(bytes)
 	fmt.Println(resp)
+	fmt.Println(<-in)
 }
 
 func CmdBash(commandName string) {
