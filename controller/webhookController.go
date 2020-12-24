@@ -6,7 +6,7 @@ import (
 )
 
 func Rebuild(c *gin.Context) {
-	command := "echo 123123"
+	command := "/home/admin/gin_server_v1/build.sh"
 	cmd := exec.Command("/bin/bash", "-c", command)
 	bytes, err := cmd.Output()
 	if err != nil {
