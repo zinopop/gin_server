@@ -1,7 +1,7 @@
 Server:
   Http:
     ServerIp : 0.0.0.0
-    ServerPort: 9001
+    ServerPort: 9002
 DingTalk:
   SendUrl : https://oapi.dingtalk.com/robot/send
   AccessToken : f06c463c2c4be4e2a3ce9bc7705cbcf3cabbf7a6e4b4587ccb4814fefd8c2f50
