@@ -1,17 +1,21 @@
 package controller
 
 import (
+	"fmt"
 	"gin_server/helper"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
+
+type DingController struct {
+}
 
 type SendMsg struct {
 	Text string `form:"text" json:"text" xml:"text"  binding:"required"`
 }
 
 //
-func DingSend(c *gin.Context) {
+func (DingController) DingSend(c *gin.Context) {
 	var SendMsg SendMsg
 	if err := c.ShouldBind(&SendMsg); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "测试错误"})
@@ -26,4 +30,10 @@ func DingSend(c *gin.Context) {
 		"data":    "",
 		"message": msg,
 	})
+}
+
+//test
+func (DingController DingController) Test(a string) string {
+	fmt.Println(a)
+	return a
 }
