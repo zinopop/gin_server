@@ -2,7 +2,7 @@ package lib
 
 import (
 	"fmt"
-	"os/exec"
+	"time"
 )
 
 var testChan = make(chan int)
@@ -20,7 +20,7 @@ func init() {
 				}
 			case _, ok := <-buildChan:
 				if ok {
-					go consumeRebuild()
+					consumeRebuild()
 					continue LOOP
 				}
 			}
@@ -34,14 +34,21 @@ func RebuildTask() {
 }
 
 func consumeRebuild() {
-	command := "/home/admin/gin_server_v1/build.sh"
-	cmd := exec.Command("/bin/bash", "-c", command)
-	bytes, err := cmd.Output()
-	if err != nil {
-		fmt.Println(err)
-	}
-	resp := string(bytes)
-	fmt.Println(resp)
+	fmt.Println("start")
+	time.Sleep(time.Duration(5) * time.Second)
+	fmt.Println("end")
+	//如果失败启动协程重新消费阻塞后面的队列
+	go func() {
+		buildChan <- 1
+	}()
+	//command := "/home/admin/gin_server_v1/build.sh"
+	//cmd := exec.Command("/bin/bash", "-c", command)
+	//bytes, err := cmd.Output()
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//resp := string(bytes)
+	//fmt.Println(resp)
 }
 
 func TestTask() {
