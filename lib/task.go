@@ -26,7 +26,7 @@ func init() {
 			}
 		}
 	}()
-	fmt.Println("异步协程监听启动成功....")
+	fmt.Println("task异步协程启动成功....")
 }
 
 func RebuildTask() {
