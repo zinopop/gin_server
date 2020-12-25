@@ -1,9 +1,7 @@
 package controller
 
 import (
-	"fmt"
 	"gin_server_v1/helper"
-	"gin_server_v1/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -28,8 +26,4 @@ func DingSend(c *gin.Context) {
 		"data":    "",
 		"message": msg,
 	})
-}
-
-func DbText(c *gin.Context) {
-	fmt.Println(model.GetById(1))
 }

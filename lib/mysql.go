@@ -1,15 +1,16 @@
 package lib
 
 import (
-	"database/sql"
 	"fmt"
 	"gin_server_v1/helper"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-xorm/xorm"
+	"os"
 )
 
-var Db *sql.DB
+var dbMysql *xorm.Engine
 
-func init() {
+func mysqlEngine() *xorm.Engine {
 	connectString := helper.Config.GetString("DB.Mysql.default.UserName") +
 		":" +
 		helper.Config.GetString("DB.Mysql.default.PassWord") +
@@ -17,9 +18,28 @@ func init() {
 		":" +
 		helper.Config.GetString("DB.Mysql.default.Port") + ")/" +
 		helper.Config.GetString("DB.Mysql.default.DbName")
-	db, _ := sql.Open(helper.Config.GetString("DB.Mysql.default.DriverName"), connectString)
-	db.SetMaxOpenConns(10)
-	db.SetMaxIdleConns(5)
-	Db = db
-	fmt.Println("mysql连接池初始化成功.....")
+	engine, err := xorm.NewEngine(helper.Config.GetString("DB.Mysql.default.DriverName"), connectString)
+	if err != nil {
+		fmt.Println("mysql初始化失败")
+		os.Exit(1)
+	}
+	//日志打印SQL
+	engine.ShowSQL(true)
+	//设置连接池的空闲数大小
+	engine.SetMaxIdleConns(5)
+	//设置最大打开连接数
+	engine.SetMaxOpenConns(5)
+	return engine
+}
+
+func GetConn() *xorm.Engine {
+	return dbMysql
+}
+
+func Close() {
+	dbMysql.Close()
+}
+
+func init() {
+	dbMysql = mysqlEngine()
 }
