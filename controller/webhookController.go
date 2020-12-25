@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"gin_server_v1/lib"
+	"gin_server/lib"
 	"github.com/gin-gonic/gin"
 )
 

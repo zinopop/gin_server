@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"gin_server_v1/controller"
-	"gin_server_v1/middleware"
+	"gin_server/controller"
+	"gin_server/middleware"
 )
 
 func init() {

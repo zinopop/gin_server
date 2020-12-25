@@ -2,7 +2,7 @@ package lib
 
 import (
 	"fmt"
-	"gin_server_v1/helper"
+	"gin_server/helper"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"os"

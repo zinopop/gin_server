@@ -1,12 +1,11 @@
 package main
 
 import (
-	"gin_server_v1/helper"
-	"gin_server_v1/lib"
-	_ "gin_server_v1/lib"
-	"gin_server_v1/middleware"
-	"gin_server_v1/model"
-	_ "gin_server_v1/routes"
+	"gin_server/helper"
+	"gin_server/lib"
+	"gin_server/middleware"
+	"gin_server/model"
+	_ "gin_server/routes"
 )
 
 func main() {

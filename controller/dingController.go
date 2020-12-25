@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"gin_server_v1/helper"
+	"gin_server/helper"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
