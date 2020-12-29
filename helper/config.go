@@ -20,7 +20,7 @@ var Config ConfigEngine
 func init() {
 	err := Config.Load("config/default.yaml")
 	if err != nil {
-		fmt.Println("配置文件读取错误..无法启动服务")
+		fmt.Println("配置文件读取错误..无法启动服1务")
 		os.Exit(1)
 		return
 	}
