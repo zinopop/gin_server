@@ -10,6 +10,7 @@ import (
 type DingController struct {
 }
 
+//DingSend的传参
 type SendMsg struct {
 	Text string `form:"text" json:"text" xml:"text"  binding:"required"`
 }
