@@ -8,11 +8,20 @@ DingTalk:
   Secret : SEC6b2e548aa7dcd97a115046926c5409f7bb8b6f0b35091c391cd692cc8de8c787
 DB:
   Mysql:
-    default:
+    Default:
       DriverName: mysql
       Connection: 39.97.164.243
       Port: 3306
       DbName: zhaopin
       UserName: root
       PassWord: 123456
+    Andoncloud:
+      DriverName: mysql
+      Connection: product-mysql-myvital.cgwupo8fvdrn.us-west-1.rds.amazonaws.com
+      Port: 3306
+      DbName: andoncloud
+      UserName: ihealth_cloud
+      PassWord: "@53MCT+p0NrB5@7Uc9)~lOfYP*gg-h8okK$E$EKnRJdna2E_Wj_DS+VU"
+
+
 

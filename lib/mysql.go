@@ -10,15 +10,15 @@ import (
 
 var dbMysql *xorm.Engine
 
-func mysqlEngine() *xorm.Engine {
-	connectString := helper.Config.GetString("DB.Mysql.default.UserName") +
+func mysqlEngine(DbFlag string) *xorm.Engine {
+	connectString := helper.Config.GetString("DB.Mysql."+DbFlag+".UserName") +
 		":" +
-		helper.Config.GetString("DB.Mysql.default.PassWord") +
-		"@tcp(" + helper.Config.GetString("DB.Mysql.default.Connection") +
+		helper.Config.GetString("DB.Mysql."+DbFlag+".PassWord") +
+		"@tcp(" + helper.Config.GetString("DB.Mysql."+DbFlag+".Connection") +
 		":" +
-		helper.Config.GetString("DB.Mysql.default.Port") + ")/" +
-		helper.Config.GetString("DB.Mysql.default.DbName")
-	engine, err := xorm.NewEngine(helper.Config.GetString("DB.Mysql.default.DriverName"), connectString)
+		helper.Config.GetString("DB.Mysql."+DbFlag+".Port") + ")/" +
+		helper.Config.GetString("DB.Mysql."+DbFlag+".DbName")
+	engine, err := xorm.NewEngine(helper.Config.GetString("DB.Mysql."+DbFlag+".DriverName"), connectString)
 	if err != nil {
 		fmt.Println("mysql初始化失败")
 		os.Exit(1)
@@ -41,5 +41,6 @@ func Close() {
 }
 
 func init() {
-	dbMysql = mysqlEngine()
+	dbMysql = mysqlEngine("Andoncloud")
+	fmt.Println("数据库初始化成功")
 }
