@@ -7,6 +7,7 @@ sudo docker rmi gin_server:latest
 cd /home/admin/gin_server_v1
 
 sudo curl http://54.215.230.116:9001/sendMsg?text=代码热更新中...
+sudo git fetch --all && sudo git reset --hard origin/master && sudo git pull && sudo chmod +x ./build.sh ./build_ding.sh
 sudo git pull
 
 sudo curl http://54.215.230.116:9001/sendMsg?text=开始构建并运行中...

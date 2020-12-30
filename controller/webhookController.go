@@ -8,6 +8,7 @@ import (
 type WebhookController struct {
 }
 
+//
 func (WebhookController) Rebuild(c *gin.Context) {
 	lib.RebuildTask()
 }
