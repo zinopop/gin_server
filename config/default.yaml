@@ -1,4 +1,5 @@
 Server:
+  Mode: release #debug test release
   Http:
     ServerIp : 0.0.0.0
     ServerPort: 9002

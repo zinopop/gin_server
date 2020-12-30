@@ -15,12 +15,14 @@ func (DefaultController) Index(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
+			"code":    500,
 			"data":    "",
 			"message": err.Error(),
 		})
 	}
 	c.JSON(200, gin.H{
-		"data":    "",
-		"message": userInfo,
+		"code":    200,
+		"data":    userInfo,
+		"message": "success",
 	})
 }

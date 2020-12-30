@@ -21,13 +21,15 @@ func (DingController) Test(c *gin.Context) {
 	data, err := andoncloud.Bloodpressureinfo{}.FindOne(params.BPId)
 	if err != nil {
 		c.JSON(500, gin.H{
+			"code":    500,
 			"data":    "",
 			"message": err.Error(),
 		})
 		return
 	}
 	c.JSON(200, gin.H{
-		"data":    "",
-		"message": data,
+		"code":    200,
+		"data":    data,
+		"message": "success",
 	})
 }
