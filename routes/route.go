@@ -2,7 +2,8 @@ package routes
 
 import (
 	"gin_server/controller"
-	andoncloud_v6_controller "gin_server/controller/andoncloud/v6"
+	controller_andoncloud_v6 "gin_server/controller/andoncloud/v6"
+	controller_demo "gin_server/controller/demo"
 	"gin_server/middleware"
 )
 
@@ -15,10 +16,16 @@ func init() {
 	middleware.Server.Any("/default", controller.DefaultController{}.Index)
 
 	//九安医疗路由分组
-	andoncloud := middleware.Server.Group("andoncloud")
-	andoncloud_v6 := andoncloud.Group("v6")
+	router_andoncloud_v6 := middleware.Server.Group("andoncloud").Group("v6")
 	{
 		//测试路由
-		andoncloud_v6.POST("/test", andoncloud_v6_controller.DingController{}.Test)
+		router_andoncloud_v6.POST("/test", controller_andoncloud_v6.DingController{}.Test)
+	}
+
+	//demo路由分组
+	router_demo := middleware.Server.Group("demo")
+	{
+		//模板渲染
+		router_demo.GET("template/index", controller_demo.TemplateController{}.Index)
 	}
 }

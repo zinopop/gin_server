@@ -12,6 +12,7 @@ func main() {
 	//
 	////同步表结构
 	//db.Sync(&model.UserTest{})
+	middleware.Server.LoadHTMLGlob("assets/*")
 
 	middleware.Server.Run(helper.Config.GetString("Server.Http.ServerIp") + ":" + helper.Config.GetString("Server.Http.ServerPort"))
 }
