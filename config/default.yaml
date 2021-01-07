@@ -4,9 +4,9 @@ Server:
     ServerIp : 0.0.0.0
     ServerPort: 9002
 DingTalk:
-  SendUrl : xxxxxxxxxxxxxxxxxxxx
-  AccessToken : xxxxxxxxxxxxxxxxxxxx
-  Secret : xxxxxxxxxxxxxxxxxxxx
+  SendUrl : https://oapi.dingtalk.com/robot/send
+  AccessToken : f06c463c2c4be4e2a3ce9bc7705cbcf3cabbf7a6e4b4587ccb4814fefd8c2f50
+  Secret : SEC6b2e548aa7dcd97a115046926c5409f7bb8b6f0b35091c391cd692cc8de8c787
 
 #  SendUrl: https://oapi.dingtalk.com/robot/send
 #  AccessToken: 7d6257c56c7007418d44988c17d0330c9d737348d2ba250b67b369a830a5e386
@@ -16,19 +16,19 @@ DingTalk:
 DB:
   Mysql:
     Default:
-      DriverName: xxxxxxxxxxxxxxxxxxxx
-      Connection: xxxxxxxxxxxxxxxxxxxx
-      Port: xxxxxxxxxxxxxxxxxxxx
-      DbName: xxxxxxxxxxxxxxxxxxxx
-      UserName: xxxxxxxxxxxxxxxxxxxx
-      PassWord: xxxxxxxxxxxxxxxxxxxx
+      DriverName: mysql
+      Connection: 39.97.164.243
+      Port: 3306
+      DbName: zhaopin
+      UserName: root
+      PassWord: 123456
     Andoncloud:
-      DriverName: xxxxxxxxxxxxxxxxxxxx
-      Connection: xxxxxxxxxxxxxxxxxxxx
-      Port: xxxxxxxxxxxxxxxxxxxx
-      DbName: xxxxxxxxxxxxxxxxxxxx
-      UserName: xxxxxxxxxxxxxxxxxxxx
-      PassWord: xxxxxxxxxxxxxxxxxxxx
+      DriverName: mysql
+      Connection: product-mysql-myvital.cgwupo8fvdrn.us-west-1.rds.amazonaws.com
+      Port: 3306
+      DbName: andoncloud
+      UserName: ihealth_cloud
+      PassWord: "@53MCT+p0NrB5@7Uc9)~lOfYP*gg-h8okK$E$EKnRJdna2E_Wj_DS+VU"
 
 
 
