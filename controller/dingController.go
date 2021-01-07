@@ -1,40 +1,31 @@
 package controller
 
 import (
-	"fmt"
-	"gin_server/helper"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type DingController struct {
+	BaseController
 }
 
-//DingSend的传参
-type SendMsg struct {
-	Text string `form:"text" json:"text" xml:"text"  binding:"required"`
-}
-
-//
-func (DingController) DingSend(c *gin.Context) {
-	var SendMsg SendMsg
-	if err := c.ShouldBind(&SendMsg); err != nil {
+func (controller DingController) DingSend(c *gin.Context) {
+	params := struct {
+		Text string `form:"text" json:"text" xml:"text"  binding:"required"`
+	}{}
+	if err := c.ShouldBind(&params); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "测试错误44444444"})
 		return
 	}
-	msg, err := helper.SendDingMsg(string(helper.ContextPush(SendMsg.Text)))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	c.JSON(200, gin.H{
-		"data":    "",
-		"message": msg,
-	})
-}
+	//msg, err := helper.SendDingMsg(string(helper.ContextPush(params.Text)))
+	//if err != nil {
+	//	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	//	return
+	//}
 
-//test
-func (DingController DingController) Test(a string) string {
-	fmt.Println(a)
-	return a
+	//controller.c.ShouldBind()
+	c.JSON(200, gin.H{
+		"data":    controller,
+		"message": params.Text,
+	})
 }

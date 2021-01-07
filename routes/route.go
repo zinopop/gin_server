@@ -27,5 +27,7 @@ func init() {
 	{
 		//模板渲染
 		router_demo.GET("template/index", controller_demo.TemplateController{}.Index)
+		//接口返回
+		router_demo.Any("api/getTest", controller_demo.ApiController{}.GetTest)
 	}
 }

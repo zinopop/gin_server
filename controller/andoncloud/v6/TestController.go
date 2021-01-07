@@ -1,35 +1,33 @@
 package v6
 
 import (
+	"gin_server/controller"
 	"gin_server/model/andoncloud"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type DingController struct {
+	controller.BaseController
 }
 
-func (DingController) Test(c *gin.Context) {
+func (controller DingController) Test(c *gin.Context) {
 	//BPId,err := strconv.ParseInt(c.Request.FormValue("BPId"), 10, 64)
+	//参数绑定和入参
 	params := struct {
 		BPId int64 `form:"BPId" json:"BPId" xml:"BPId"  binding:"required"`
 	}{}
+	//入参校验
 	if err := c.ShouldBind(&params); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		controller.ErrorJsonResponse(c, err.Error(), "")
 		return
 	}
+	//调用模型层获取持久层数据
 	data, err := andoncloud.Bloodpressureinfo{}.FindOne(params.BPId)
+	//处理错误
 	if err != nil {
-		c.JSON(500, gin.H{
-			"code":    500,
-			"data":    "",
-			"message": err.Error(),
-		})
+		controller.ErrorJsonResponse(c, err.Error(), "")
 		return
 	}
-	c.JSON(200, gin.H{
-		"code":    200,
-		"data":    data,
-		"message": "success",
-	})
+	//相应参数
+	controller.SuccessJsonResponse(c, "获取成功", data)
 }
