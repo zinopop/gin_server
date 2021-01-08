@@ -23,7 +23,7 @@ func init() {
 	}
 
 	//demo路由分组
-	router_demo := middleware.Server.Group("demo")
+	router_demo := middleware.Server.Group("demo").Use(new(middleware.Demo).Test())
 	{
 		//模板渲染
 		router_demo.GET("template/index", controller_demo.TemplateController{}.Index)

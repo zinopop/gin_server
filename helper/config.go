@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	"os"
 	"reflect"
 	"strconv"
 	"strings"
@@ -21,7 +20,7 @@ func init() {
 	err := Config.Load("config/default.yaml")
 	if err != nil {
 		fmt.Println("配置文件读取错误..无法启动服务")
-		os.Exit(1)
+		panic(err)
 		return
 	}
 	fmt.Println("配置文件初始化成功......")
